@@ -1,6 +1,6 @@
 module.exports =
   pkg:
-    name: 'sankey', version: '0.0.1'
+    name: 'sankey', version: '0.0.2'
     # lite: 不帶 d3 的 base. 版面自己算 ( 移植 d3-sankey ), 補間走 chart.anim
     extend: {name: "@makechart/base", path: "lite/index.html"}
     dependencies: []
@@ -225,15 +225,19 @@ mod = ({context, t}) ->
   {chart} = context
   {format, anim: {join}} = chart.utils
   sample: ->
-    # 能源流向: 來源 -> 轉換 -> 用途
+    # energy flow: source -> conversion -> end use
     flows = [
-      <[煤 電力 工業 30]>, <[煤 電力 住宅 18]>, <[煤 電力 商業 12]>, <[煤 工業熱能 工業 15]>
-      <[天然氣 電力 住宅 10]>, <[天然氣 電力 商業 9]>, <[天然氣 工業熱能 工業 14]>, <[天然氣 直接燃燒 住宅 8]>
-      <[石油 交通燃料 運輸 40]>, <[石油 工業熱能 工業 6]>, <[石油 直接燃燒 商業 3]>
-      <[核能 電力 工業 7]>, <[核能 電力 住宅 5]>
-      <[再生能源 電力 住宅 8]>, <[再生能源 電力 商業 6]>, <[再生能源 電力 工業 4]>
+      ["Coal", "Electricity", "Industry", 30], ["Coal", "Electricity", "Residential", 18]
+      ["Coal", "Electricity", "Commercial", 12], ["Coal", "Industrial Heat", "Industry", 15]
+      ["Natural Gas", "Electricity", "Residential", 10], ["Natural Gas", "Electricity", "Commercial", 9]
+      ["Natural Gas", "Industrial Heat", "Industry", 14], ["Natural Gas", "Direct Use", "Residential", 8]
+      ["Oil", "Transport Fuel", "Transport", 40], ["Oil", "Industrial Heat", "Industry", 6]
+      ["Oil", "Direct Use", "Commercial", 3]
+      ["Nuclear", "Electricity", "Industry", 7], ["Nuclear", "Electricity", "Residential", 5]
+      ["Renewables", "Electricity", "Residential", 8], ["Renewables", "Electricity", "Commercial", 6]
+      ["Renewables", "Electricity", "Industry", 4]
     ]
-    raw: flows.map -> {source: it.0, via: it.1, target: it.2, value: +it.3}
+    raw: flows.map -> {source: it.0, via: it.1, target: it.2, value: it.3}
     binding:
       path: [{key: \source}, {key: \via}, {key: \target}]
       value: {key: \value, unit: \PJ}

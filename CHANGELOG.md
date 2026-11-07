@@ -1,5 +1,9 @@
 # Change Logs
 
+## v0.0.2
+
+ - use English in sample data
+
 ## v0.0.1
 
  - init release: sankey diagram on the lite base ( no d3 ). layout is ported from d3-sankey 0.12,

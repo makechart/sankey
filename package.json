@@ -1,6 +1,6 @@
 {
   "name": "@makechart/sankey",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "sankey diagram for makechart",
   "homepage": "https://github.com/makechart/sankey",
   "repository": {
