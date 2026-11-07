@@ -1,0 +1,14 @@
+.pdl-layout > div[data-type=layout]
+  display: grid
+  grid-template-columns: 1fr
+  grid-template-rows: 1fr
+  padding: .5em
+
+.sankey-label
+  font-size: .8em
+  pointer-events: none
+  user-select: none
+
+/* hover 一個節點 / 連結時, 其它連結淡掉. css 蓋過 stroke-opacity 屬性, 補間照跑 */
+.sankey-hover .link:not(.hl)
+  stroke-opacity: .06

@@ -1,0 +1,6 @@
+/context/shared
+.*.swp
+secret.*
+*.key
+node_modules
+test/output
