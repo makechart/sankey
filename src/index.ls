@@ -261,6 +261,12 @@ mod = ({context, t}) ->
         color: type: \choice, values: <[source target gradient none]>, default: \source, desc: {en: "link color: source or target uses the color of that end node, gradient blends from source to target, none uses the text color", "zh-TW": "連結的顏色：source / target 取該端節點的顏色，gradient 從來源漸變到目標，none 使用文字顏色"}
         opacity: type: \number, default: 0.4, min: 0, max: 1, step: 0.05, desc: {en: "opacity of the links ( 0 to 1 )", "zh-TW": "連結的不透明度 ( 0 到 1 )"}
         curvature: type: \number, default: 0.5, min: 0, max: 1, step: 0.05, desc: {en: "how much the links bend: 0 draws straight lines, 0.5 a smooth s-curve", "zh-TW": "連結彎曲的程度：0 為直線，0.5 為平順的 S 形曲線"}
+  # 段落 ( tab ) 的說明, key 是段落的路徑. preset 的段落由 chart.utils.config.tabinfo 掛上來, 共用的 common 由核心補.
+  # label 加了節點名稱的開關, 跟 preset 的意思不同, 自己寫
+  tabinfo: chart.utils.config.tabinfo({tip: \tip}) <<<
+    label: desc: {en: "node names and values written next to the nodes", "zh-TW": "標在節點旁的節點名稱與數值"}
+    node: desc: {en: "size, spacing, column and order of the nodes", "zh-TW": "節點的大小、間距、所在的欄與排列順序"}
+    link: desc: {en: "the flows between nodes: color, opacity and curve", "zh-TW": "節點之間的流向連結：顏色、不透明度與彎曲程度"}
   dimension:
     path: {type: \C, multiple: true, name: "path", priority: 1}
     value: {type: \R, name: "value", priority: 2}
