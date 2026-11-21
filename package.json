@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@makechart/base": "^0.2.0",
-    "@makechart/viewer": "file:../../projects/viewer",
+    "@makechart/viewer": "^0.0.8",
     "@plotdb/guides": "github:plotdb/guides",
     "@zbryikt/template": "^2.5.0"
   }
