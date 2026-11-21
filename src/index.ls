@@ -246,21 +246,21 @@ mod = ({context, t}) ->
     # 去掉尾端的 0: 6.00 -> 6, 14.0 -> 14
     c.label.format.default = c.tip.format.default = \.3~s
     c.label <<<
-      show: type: \boolean, default: true
-      value: type: \boolean, default: true
+      show: type: \boolean, default: true, desc: {en: "show node names next to the nodes", "zh-TW": "在節點旁標出節點名稱"}
+      value: type: \boolean, default: true, desc: {en: "add the total value of each node after its name; needs the value field bound", "zh-TW": "節點名稱後面加上該節點的總數值，需要綁定 value 欄位"}
     c <<<
       node:
-        width: type: \number, default: 12, min: 1, max: 100, step: 1
-        padding: type: \number, default: 10, min: 0, max: 100, step: 1
-        align: type: \choice, values: <[justify left right center]>, default: \justify
-        sort: type: \choice, values: <[auto value name none]>, default: \auto
+        width: type: \number, default: 12, min: 1, max: 100, step: 1, desc: {en: "width of each node bar ( px )", "zh-TW": "每個節點長條的寬度 ( px )"}
+        padding: type: \number, default: 10, min: 0, max: 100, step: 1, desc: {en: "vertical gap between nodes in the same column, reduced when there is not enough room ( px )", "zh-TW": "同一欄節點之間的上下間距，空間不夠時會縮小 ( px )"}
+        align: type: \choice, values: <[justify left right center]>, default: \justify, desc: {en: "which column a node goes to when nodes are merged by name: left by its distance from the start, right by its distance to the end, justify like left but end nodes go to the last column, center like left but start nodes sit right before their targets", "zh-TW": "依名稱合併節點時，節點放在哪一欄：left 依離起點的距離，right 依離終點的距離，justify 同 left 但終點節點靠最後一欄，center 同 left 但起點節點緊貼在它的目標前一欄"}
+        sort: type: \choice, values: <[auto value name none]>, default: \auto, desc: {en: "order of nodes within a column: auto lets the layout reorder them to untangle links, value puts larger ones first, name sorts by name, none keeps the data order", "zh-TW": "同一欄節點的順序：auto 由版面自動調整以減少交錯，value 數值大的在前，name 依名稱排序，none 維持資料順序"}
         # auto: 只有兩欄時當邊列表 ( 同名同一節點 ), 接成迴圈就改以欄位區分; 三欄以上以欄位區分
-        merge: type: \choice, values: <[auto name column]>, default: \auto
-        iterations: type: \number, default: 6, min: 0, max: 32, step: 1
+        merge: type: \choice, values: <[auto name column]>, default: \auto, desc: {en: "when two cells are the same node: name merges the same name anywhere ( an edge list that can chain into many levels ), column keeps each path column as its own level, auto uses name for two columns ( column if that forms a loop ) and column for three or more", "zh-TW": "哪些格子算同一個節點：name 同名就合併 ( 邊列表，可以接成多層 )，column 每個 path 欄位各自一層，auto 在只有兩欄時用 name ( 會接成迴圈就改用 column )，三欄以上用 column"}
+        iterations: type: \number, default: 6, min: 0, max: 32, step: 1, desc: {en: "passes of adjusting node positions to straighten the links; 0 just stacks the nodes", "zh-TW": "調整節點位置讓連結變直的次數；0 表示只把節點依序堆疊"}
       link:
-        color: type: \choice, values: <[source target gradient none]>, default: \source
-        opacity: type: \number, default: 0.4, min: 0, max: 1, step: 0.05
-        curvature: type: \number, default: 0.5, min: 0, max: 1, step: 0.05
+        color: type: \choice, values: <[source target gradient none]>, default: \source, desc: {en: "link color: source or target uses the color of that end node, gradient blends from source to target, none uses the text color", "zh-TW": "連結的顏色：source / target 取該端節點的顏色，gradient 從來源漸變到目標，none 使用文字顏色"}
+        opacity: type: \number, default: 0.4, min: 0, max: 1, step: 0.05, desc: {en: "opacity of the links ( 0 to 1 )", "zh-TW": "連結的不透明度 ( 0 到 1 )"}
+        curvature: type: \number, default: 0.5, min: 0, max: 1, step: 0.05, desc: {en: "how much the links bend: 0 draws straight lines, 0.5 a smooth s-curve", "zh-TW": "連結彎曲的程度：0 為直線，0.5 為平順的 S 形曲線"}
   dimension:
     path: {type: \C, multiple: true, name: "path", priority: 1}
     value: {type: \R, name: "value", priority: 2}
